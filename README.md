@@ -7,6 +7,27 @@ This is the public documentation for the minRTT dataset and visualisation that w
  - document table locations
  - document how to deal with data quality (probe geoloc, rtt lies)
 
+# Publicly available datasets
+We currently (Nov 2021) host this on GCP and data is available at:
+ * [Browsable listing by network](https://console.cloud.google.com/storage/browser/ripencc_public/rd/min-rtt-by-net?pageState=(%22StorageObjectListTable%22:(%22f%22:%22%255B%255D%22))&project=prod-atlas-project&prefix=&forceOnObjectsSortingFiltering=false)
+   - we kindly ask users to fetch the data from the CDN: `https://rd-gcp-cdn.ripe.net/rd/min-rtt-by-net/latest/<net>.json` where net can be an ASN or an IXP id as seen in PeeringDB.
+   - [Example for AS3333](https://rd-gcp-cdn.ripe.net/rd/min-rtt-by-net/latest/3333.json)
+ * [Browsable listing by probe](https://console.cloud.google.com/storage/browser/ripencc_public/rd/min-rtt-by-prb_id?pageState=(%22StorageObjectListTable%22:(%22f%22:%22%255B%255D%22))&project=prod-atlas-project&prefix=&forceOnObjectsSortingFiltering=false)
+   - we kindly ask users to fetch the data from the CDN: `https://rd-gcp-cdn.ripe.net/rd/min-rtt-by-prb_id/latest/<prb_id>.json`
+   - [Example for probe #1](https://rd-gcp-cdn.ripe.net/rd/min-rtt-by-prb_id/latest/1.json)
+
+(these URLs will likely change! We want to get rid of the 'origin' in it and start using more descriptive 'net' as a name for ASNs or IXPs)
+  
+# Observable notebooks showcasing these datasets
+Obeservable viz around this:
+  * https://observablehq.com/@ripencc/atlas-latency-worldmap
+  * https://observablehq.com/@ripencc/atlas-probe-neighbourhood
+  * https://observablehq.com/@aguformoso/atlas-probe-proximity-to-ixps. (which IXPs are we 'covering' with RIPE Atlas), allows for tweaking of the parameters for 'covering'). Idea here is that we could leverage this to get more IXPs covered. Might be a campaign for probe placement we run in the near future.
+
+# Describe success stories
+
+# Other docs (ripe labs etc.)
+
 # SQL query running daily in BigQuery
 This is the SQL query we run in [our BigQuery environment](https://github.com/RIPE-NCC/ripe-atlas-bigquery) which populates our dataset:
 
@@ -66,23 +87,3 @@ from split_nets, unnest(nets) as _net
 group by prb_id,_net,af,protoc,day
 ```
 
-# Publicly available datasets
-We currently (Nov 2021) host this on GCP and data is available at:
- * [Browsable listing by network](https://console.cloud.google.com/storage/browser/ripencc_public/rd/min-rtt-by-net?pageState=(%22StorageObjectListTable%22:(%22f%22:%22%255B%255D%22))&project=prod-atlas-project&prefix=&forceOnObjectsSortingFiltering=false)
-   - we kindly ask users to fetch the data from the CDN: `https://rd-gcp-cdn.ripe.net/rd/min-rtt-by-net/latest/<net>.json` where net can be an ASN or an IXP id as seen in PeeringDB.
-   - [Example for AS3333](https://rd-gcp-cdn.ripe.net/rd/min-rtt-by-net/latest/3333.json)
- * [Browsable listing by probe](https://console.cloud.google.com/storage/browser/ripencc_public/rd/min-rtt-by-prb_id?pageState=(%22StorageObjectListTable%22:(%22f%22:%22%255B%255D%22))&project=prod-atlas-project&prefix=&forceOnObjectsSortingFiltering=false)
-   - we kindly ask users to fetch the data from the CDN: `https://rd-gcp-cdn.ripe.net/rd/min-rtt-by-prb_id/latest/<prb_id>.json`
-   - [Example for probe #1](https://rd-gcp-cdn.ripe.net/rd/min-rtt-by-prb_id/latest/1.json)
-
-(these URLs will likely change! We want to get rid of the 'origin' in it and start using more descriptive 'net' as a name for ASNs or IXPs)
-  
-# Observable notebooks showcasing these datasets
-Obeservable viz around this:
-  * https://observablehq.com/@ripencc/atlas-latency-worldmap
-  * https://observablehq.com/@ripencc/atlas-probe-neighbourhood
-  * https://observablehq.com/@aguformoso/atlas-probe-proximity-to-ixps. (which IXPs are we 'covering' with RIPE Atlas), allows for tweaking of the parameters for 'covering'). Idea here is that we could leverage this to get more IXPs covered. Might be a campaign for probe placement we run in the near future.
-
-# Describe success stories
-
-# Other docs (ripe labs etc.)
