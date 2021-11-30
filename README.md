@@ -8,15 +8,14 @@ This is the public documentation for the minRTT dataset and visualisation that w
  - document how to deal with data quality (probe geoloc, rtt lies)
 
 # Publicly available datasets
-We currently (Nov 2021) host this on GCP and data is available at:
+We currently (Nov 2021) create and host this data on the Google Cloud Platform (GCP, see https://github.com/RIPE-NCC/ripe-atlas-bigquery ) and data is available at:
  * [Browsable listing by network](https://console.cloud.google.com/storage/browser/ripencc_public/rd/min-rtt-by-net?pageState=(%22StorageObjectListTable%22:(%22f%22:%22%255B%255D%22))&project=prod-atlas-project&prefix=&forceOnObjectsSortingFiltering=false)
    - we kindly ask users to fetch the data from the CDN: `https://rd-gcp-cdn.ripe.net/rd/min-rtt-by-net/latest/<net>.json` where net can be an ASN or an IXP id as seen in PeeringDB.
    - [Example for AS3333](https://rd-gcp-cdn.ripe.net/rd/min-rtt-by-net/latest/3333.json)
  * [Browsable listing by probe](https://console.cloud.google.com/storage/browser/ripencc_public/rd/min-rtt-by-prb_id?pageState=(%22StorageObjectListTable%22:(%22f%22:%22%255B%255D%22))&project=prod-atlas-project&prefix=&forceOnObjectsSortingFiltering=false)
    - we kindly ask users to fetch the data from the CDN: `https://rd-gcp-cdn.ripe.net/rd/min-rtt-by-prb_id/latest/<prb_id>.json`
    - [Example for probe #1](https://rd-gcp-cdn.ripe.net/rd/min-rtt-by-prb_id/latest/1.json)
-
-(these URLs will likely change! We want to get rid of the 'origin' in it and start using more descriptive 'net' as a name for ASNs or IXPs)
+  * A daily dump is available at: https://rd-gcp-cdn.ripe.net/rd/min-rtt/$DATE.json.tar.gz
   
 # Observable notebooks showcasing these datasets
 Obeservable viz around this:
